@@ -19,6 +19,10 @@ namespace Quest
             var aRobe = new Robe() { Colors = new List<string>() { "Gold", "Blue" }};
             Console.WriteLine("What is your Name?");
             string duder = Console.ReadLine();
+            Hat shine = new Hat{
+                ShininessLevel = 5
+            };
+            var advPrize = new Prize("Red Snapper");
             Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10);
             Challenge theAnswer = new Challenge(
                 "What's the answer to life, the universe and everything?", 42, 25);
@@ -37,6 +41,8 @@ namespace Quest
 ",
                 4, 20
             );
+            Challenge freebee = new Challenge("Put down the number 5", 5, 10);
+            Challenge licks = new Challenge("How many licks does it take to get to the center of a tootsie pop", 100, 30);
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -49,7 +55,7 @@ namespace Quest
 
             // Make a new "Adventurer" object using the "Adventurer" class
 
-            Adventurer theAdventurer = new Adventurer(duder, aRobe);
+            Adventurer theAdventurer = new Adventurer(duder, aRobe, shine);
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
@@ -59,7 +65,9 @@ namespace Quest
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                freebee,
+                licks
             };
 
             Console.WriteLine(theAdventurer.GetDescription());
@@ -85,12 +93,20 @@ namespace Quest
             {
                 Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
             }
+            advPrize.ShowPrize(theAdventurer);
             Console.WriteLine("Play Again?  Y or N");
             string play = Console.ReadLine();
 
             if( play != "y")
             {
                 break;
+            }
+            else
+            {
+                Console.WriteLine("Here we go again");
+
+                int challengeCounter = theAdventurer.ChallengeCounter *10;
+                theAdventurer.Awesomeness += challengeCounter;
             }
 
             }
